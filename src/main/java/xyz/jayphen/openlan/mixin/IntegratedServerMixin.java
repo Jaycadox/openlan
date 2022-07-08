@@ -33,9 +33,10 @@ public class IntegratedServerMixin {
 	@Inject(method = "openToLan", at = @At("HEAD"))
 	public void openToLanMixin(GameMode gameMode, boolean cheatsAllowed, int port, CallbackInfoReturnable<Boolean> cir) {
 		var directory = FabricLoader.getInstance().getGameDir().resolve("openlan/");
+		var ext = System.getProperty("os.name").toLowerCase().contains("windows") ? ".bat" : ".sh";
 		try {
-			if(Files.exists(directory.resolve("bootstrap.bat"))) {
-				String[] params = { directory.resolve("bootstrap.bat").toAbsolutePath().toString(), "" + port };
+			if(Files.exists(directory.resolve("bootstrap" + ext))) {
+				String[] params = { directory.resolve("bootstrap" + ext).toAbsolutePath().toString(), "" + port };
 				Runtime runtime = Runtime.getRuntime();
 				OpenlanClient.exposeProcess = runtime.exec(params);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(OpenlanClient.exposeProcess.getInputStream()));
