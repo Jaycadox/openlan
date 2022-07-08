@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "openlan",
+  "version": "${version}",
+  "name": "OpenLan",
+  "description": "",
+  "authors": [
+    "jypn"
+  ],
+  "contact": {
+    "website": "jaypheh.xyz"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "xyz.jayphen.openlan.client.OpenlanClient"
+    ],
+    "main": [
+      "xyz.jayphen.openlan.Openlan"
+    ]
+  },
+  "mixins": [
+    "openlan.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.8",
+    "minecraft": "1.19"
+  }
+}
